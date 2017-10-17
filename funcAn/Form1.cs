@@ -13,13 +13,12 @@ namespace funcAn
 {
     public partial class Form1 : Form
     {
-        int val;
+        int val, qwCount;
         Dictionary<int, string> arrayQW = new Dictionary<int, string>();
         Dictionary<string, string> arrayANS = new Dictionary<string, string>();
 
         public Form1()
         {
-            InitializeComponent();
             // є ∈ ∀ ∃ ⊂ → ↦ ∪ ⋂ Ā ∞ α ≤ ≥ ⇒ ⇔
             //arrayQW.Add(0, ""); 
             //arrayANS.Add("", "");
@@ -330,6 +329,17 @@ namespace funcAn
             arrayQW.Add(94, "Пространство Соболева");
             arrayANS.Add("Пространство Соболева", "Множество W_2^1(a,b) = {f∈L^2(a,b): ∃g∈L^2(a,b) (g,u) = -(f,u') ∀u∈C_0'[a,b]} называют пространством Соболева \r\n" +
                 "C_0^1[a,b] = {u(x), x∈[a,b] непрерывно дифференцируема, u(a)=u(b)=0} Функция g называется Обобщенной производной от функции f");
+
+            InitializeComponent();
+
+            for (int i = 1; i <= arrayQW.Count; i++)
+            {
+                domainUpDown1.Items.Add(i);
+                domainUpDown2.Items.Add(i);
+            }
+            domainUpDown1.Items.Reverse();
+            domainUpDown2.Items.Reverse();
+            domainUpDown2.Text = arrayQW.Count.ToString();
             // є ∈ ∀ ∃ ⊂ → ↦ ∪ ⋂ Ā ∞ α β ≤ ≥ ⇒ ⇔ ℝ ℂ ε ≠ ∑ λ δ ⊥ ⊕	Â 
 
             //arrayQW.Add(0, "");
@@ -345,9 +355,11 @@ namespace funcAn
 
         private void button1_Click(object sender, EventArgs e)
         {
+            qwCount = Convert.ToInt32(domainUpDown2.Text) - Convert.ToInt32(domainUpDown1.Text);
             Random rng = new Random();
-            val = rng.Next(94);
+            val = rng.Next(qwCount);
 
+            val += Convert.ToInt32(domainUpDown1.Text) - 1;
             textBox3.Text = arrayQW[val];
         }
 
@@ -363,6 +375,20 @@ namespace funcAn
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
 
         }
